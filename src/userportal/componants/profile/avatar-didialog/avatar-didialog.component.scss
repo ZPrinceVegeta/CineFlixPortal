@@ -1,0 +1,143 @@
+.avatar-main {
+  width: 100%;
+  background-color: black;
+  border-radius: 0;
+  color: white;
+
+  .avatar-header {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 70px 30px 70px;
+
+    .go-back {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 31px;
+        height: 31px;
+        font-size: 31px;
+        margin-right: 20px;
+        cursor: pointer;
+
+      }
+
+      .go-bck-header {
+        h1 {
+          font-size: 32px;
+          margin: 0;
+          font-weight: 500;
+          margin-bottom: 15px;
+          line-height: 2.5vw;
+        }
+
+        h2 {
+          font-size: 25px;
+          margin-bottom: 0px;
+          line-height: 2vw;
+        }
+      }
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+
+      span {
+        font-size: 19px;
+        font-weight: 500;
+        margin-right: 22px;
+      }
+
+      .profile-picture {
+        width: 82px;
+
+        img {
+          width: 100%;
+        }
+
+      }
+
+    }
+  }
+
+  .avatar-body {
+    margin: 0px 70px;
+
+    h1 {
+      font-size: 31px;
+      font-weight: 500;
+    }
+
+    .profile-image-container {
+      display: flex;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 5%;
+
+      // justify-content: space-between;
+      .image-box {
+        width: 16%;
+        margin-bottom: 18px;
+        transition: all 0.3s;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+
+
+        // margin-bottom: ;
+        img {
+          width: 100%;
+        }
+      }
+
+    }
+
+  }
+
+  @media (max-width: 600px) {
+    .avatar-header {
+      margin: 24px 30px 30px 30px !important;
+
+      .go-back {
+        img {
+          width: 22px !important;
+          height: 22px !important;
+          font-size: 22px !important;
+          margin-right: 16px !important;
+        }
+
+        h1 {
+          font-size: 25px !important;
+          line-height: 25px !important;
+          margin-bottom: 6px !important;
+        }
+
+        h2 {
+          font-size: 18px !important;
+          line-height: 18px !important;
+        }
+      }
+      .profile{
+        display: none;
+      }
+
+    }
+    .avatar-body {
+      h1{
+        font-size: 26px;
+      }
+      .profile-image-container {
+        gap: 10%;
+        .image-box {
+          width: 45%;
+        }
+
+      }
+    }
+  }
+
+}

@@ -1,0 +1,270 @@
+.wrapper {
+  background-color: black;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+
+  .centred-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .profile-actions-container {
+
+      h1,
+      h2 {
+        color: white;
+      }
+
+      h1 {
+        font-size: 40px;
+        line-height: 48px;
+        margin: 0;
+      }
+
+      h2 {
+        font-size: 13px;
+        line-height: 13px;
+        margin: 11px 0;
+      }
+
+      .profile-entry {
+        display: flex;
+        // padding: 2em 0;
+        border-bottom: 1px solid #333;
+        border-top: 1px solid #333;
+        padding: 24px 0;
+        // margin: 10px 0;
+        margin: 10px 0 25px 0px;
+
+        .main-profile-avatar {
+
+          // width: 100px;
+          // height: 100px;
+          margin-right: 1.5vw;
+          max-width: 180px;
+          min-width: 80px;
+          white-space: nowrap;
+          width: 8vw;
+
+          img {
+            width: 100%;
+            transition: all 0.3s;
+            &:hover {
+            cursor: pointer;
+            transform: scale(1.1);
+
+            }
+          }
+        }
+
+        .profile-add-parent {
+          display: flex;
+          align-items: center;
+          margin-left: 8px;
+
+          .name-input {
+            height: 24px;
+            background-color: grey;
+            border: none;
+            color: white;
+            outline: none;
+            padding-left: 8px;
+            &::placeholder {
+              color: #e9e9e9; // Change this to your desired color
+            }
+
+
+
+          }
+
+          .add-kids-option {
+
+            height: 22px;
+            width: 22px;
+            border: 1px grey solid;
+            margin: 0 3px 0 14px;
+            .child-checkbox{
+              height: 100%;
+              &:hover{
+                cursor: pointer;
+              }
+              img{
+              height: 100%;
+
+              }
+            }
+
+
+          }
+
+          .child-label {
+            color: white;
+            font-size: 13px;
+          }
+
+
+        }
+      }
+
+    }
+  }
+}
+.languagr-wrapper{
+  background-color: black;
+  // width: 100%;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding: 60px 8vw 20px 8vw;
+  .language-head{
+
+  }
+  .languageContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+    flex-wrap: wrap;
+    .languageCard{
+      width: 10.75%;
+      margin-bottom: 12px;
+      text-align: center;
+
+
+      .cardBox{
+        width: 100%;
+        aspect-ratio : 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 900;
+        font-size: 18px;
+        border-radius: 20px;
+        color: #313131;
+      transition: all 0.2s;
+      border: 3px solid transparent;
+      box-sizing: border-box;
+      &:hover{
+
+          transform: scale(1.05);
+          cursor: pointer;
+
+      }
+      &.cardbox-selected{
+        transform: scale(1.05);
+      border: 6px solid white;
+
+      }
+
+
+        // height: 50px;
+
+      }
+    }
+  }
+  .genreContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+    flex-wrap: wrap;
+    .genreCard{
+      width: 10.75%;
+      color: black;
+      // background-color: white;
+      border-radius: 50%;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 19px;
+      transition: all 0.2s;
+      &:hover{
+        cursor: pointer;
+        transform: scale(1.1);
+      }
+      &.genre-selected{
+        border: 8px solid transparent;
+
+        transform: scale(1.05);
+        border: 6px solid white;
+        // animation: border-circle 0.2s ease-in;
+        // animation: border 2s ease-in;
+
+      }
+    }
+  }
+  .button-container{
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+.profile-button{
+  padding: 9px 20px;
+  margin-right: 18px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  &.continue-button{
+    background-color: white;
+    color: black;
+    &:hover{
+    background-color: red;
+    color: white;
+
+    }
+  }
+  &.cancel-button{
+    background-color: transparent;
+    color: grey;
+    border: 2px solid grey;
+    &:hover{
+      color: white;
+      border-color: white;
+
+      }
+  }
+}
+// @keyframes border-circle{
+//   0% {
+//     border: 8px solid transparent;
+//   }
+//   25%{
+//     border-top: 8px solid white;
+//     border-right: 8px solid transparent;
+//     border-bottom: 8px solid transparent;
+//     border-left: 8px solid transparent;
+//   }
+//   50%{
+//     border-top: 8px solid white;
+//     border-right: 8px solid white;
+//     border-bottom: 8px solid transparent;
+//     border-left: 8px solid transparent;
+//   }
+//   75%{
+//     border-top: 8px solid white;
+//     border-right: 8px solid white;
+//     border-bottom: 8px solid white;
+//     border-left: 8px solid transparent;
+//   }
+//   100%{
+//     border: 8px solid white;
+//   }
+// }
+// @keyframes border{
+//   to{
+//     border: 8px solid white;
+//   }
+// }
+
+
+// @keyframes border-animation {
+//   to {
+//     stroke-dashoffset: 0;
+//   }
+// }

@@ -1,0 +1,162 @@
+<div class="wrapper">
+    <div class="container">
+        @if(currentUrl == '/signin'){
+            <div class="signin-wrapper">
+                <h3 class="header-text">Sign In</h3>
+                <form [formGroup]="signInForm">
+                    <div class="form">
+                        <div class="input-div">
+                            <input class="login-input" placeholder="Email" formControlName="email" [class.error]="signInForm.controls['email'].touched && signInForm.controls['email'].hasError('required') || signInForm.controls['email'].touched && signInForm.controls['email'].hasError('email')">
+                           
+                           @if(signInForm.controls['email'].touched && signInForm.controls['email'].hasError('required')){
+                            <mat-hint>Email Is Required</mat-hint>
+                           }
+                           @if(signInForm.controls['email'].touched && signInForm.controls['email'].hasError('email')){
+                            <mat-hint>Invalid Email</mat-hint>
+                           }
+                        </div>
+                        <div class="input-div">
+                           
+                            <input class="login-input" placeholder="Password" [type]="passwordVisible ? 'text' : 'password'" formControlName="password" [class.error]="signInForm.controls['password'].touched && signInForm.controls['password'].hasError('required')">
+                            @if(!passwordVisible){
+                                <img (click)="changePasswordVisibility()" matTooltip="Show Password" class="eye-icon" src="assets/images/icons/visibility-on.svg">
+                            }
+                            @else {
+                                <img class="eye-icon" (click)="changePasswordVisibility()" matTooltip="Hide Password" src="assets/images/icons/visibility-off.svg">
+                            }
+                            
+                            @if(signInForm.controls['password'].touched && signInForm.controls['password'].hasError('required')){
+                                <mat-hint>Password Is Required</mat-hint>
+                            }
+                        </div>
+                    </div>
+                </form>
+                <div class="button-div">
+                    <button type="button" (click)="signIn()" class="signin-btn"  [disabled]="btnloader" [class.loading]="btnloader">SIGN IN</button>
+                    <a class="forgot-btn" (click)="navigate('/forgot-password')">Forgot Password?</a>
+                </div>
+                
+                <div class="footer">
+                    <p class="footer-text">New to CineFlix? <a (click)="navigate('/signup')">Sign up now.</a></p>
+                </div>
+            </div>
+        }
+        @else if (currentUrl == '/signup') {
+            <div class="signin-wrapper">
+                <h3 class="header-text">Sign Up</h3>
+                <form [formGroup]="signUpForm">
+                    <div class="form">
+                        <div class="input-div">
+                            <input class="login-input" placeholder="Email" formControlName="email" [class.error]="signUpForm.controls['email'].touched && signUpForm.controls['email'].hasError('required') || signUpForm.controls['email'].touched && signUpForm.controls['email'].hasError('email')">
+                           @if(signUpForm.controls['email'].touched && signUpForm.controls['email'].hasError('required')){
+                            <mat-hint>Email Is Required</mat-hint>
+                           }
+                           @if(signUpForm.controls['email'].touched && signUpForm.controls['email'].hasError('email')){
+                            <mat-hint>Invalid Email</mat-hint>
+                           }
+                        </div>
+                        <div class="input-div">
+                            <app-country-code [phoneControl]="signUpForm.get('phone_number')" [codeControl]="signUpForm.get('phone_country_code')"></app-country-code>
+                        </div>
+                        <div class="input-div">
+                            <input class="login-input" placeholder="Password" [type]="passwordVisible ? 'text' : 'password'" formControlName="password" [class.error]="signUpForm.controls['password'].touched && signUpForm.controls['password'].hasError('required')">
+                            @if(!passwordVisible){
+                                <img (click)="changePasswordVisibility()" matTooltip="Show Password" class="eye-icon" src="assets/images/icons/visibility-on.svg">
+                            }
+                            @else {
+                                <img class="eye-icon" (click)="changePasswordVisibility()" matTooltip="Hide Password" src="assets/images/icons/visibility-off.svg">
+                            }
+                            @if(signUpForm.controls['password'].touched && signUpForm.controls['password'].hasError('required')){
+                                <mat-hint>Password Is Required</mat-hint>
+                            }
+                        </div>
+                        
+                    </div>
+                </form>
+                <div class="button-div">
+                    <button type="button" (click)="signUp()" class="signin-btn" [disabled]="btnloader" [class.loading]="btnloader" >SIGN UP</button>
+                    <!-- <a class="forgot-btn" (click)="navigate('/forgot-password')">Forgot Password?</a> -->
+                </div>
+                
+            </div>
+        }
+        @else if (currentUrl == '/forgot-password') {
+            <div class="signin-wrapper">
+                <h3 class="header-text">Forgot Password</h3>
+                <form [formGroup]="forgotPassForm">
+                    <div class="form">
+                        <div class="input-div">
+                            <input class="login-input" placeholder="Email" formControlName="email" [class.error]="forgotPassForm.controls['email'].touched && forgotPassForm.controls['email'].hasError('required') || forgotPassForm.controls['email'].touched && forgotPassForm.controls['email'].hasError('email')">
+                           @if(forgotPassForm.controls['email'].touched && forgotPassForm.controls['email'].hasError('required')){
+                            <mat-hint>Email Is Required</mat-hint>
+                           }
+                           @if(forgotPassForm.controls['email'].touched && forgotPassForm.controls['email'].hasError('email')){
+                            <mat-hint>Invalid Email</mat-hint>
+                           }
+                        </div>
+                        <!-- <div class="input-div">
+                            <input class="login-input" placeholder="Password" [type]="passwordVisible ? 'text' : 'password'" formControlName="password" [class.error]="signInForm.controls['email'].touched && signInForm.controls['password'].hasError('required')">
+                            @if(signInForm.controls['password'].touched && signInForm.controls['password'].hasError('required')){
+                                <mat-hint>Password Is Required</mat-hint>
+                            }
+                        </div> -->
+                    </div>
+                </form>
+                @if(showResetForm){
+                    <form [formGroup]="resetPasswordForm">
+                        <div class="form">
+                            <!-- <div class="input-div">
+                                <input class="login-input" placeholder="Email" formControlName="email" [class.error]="resetPasswordForm.controls['email'].touched && resetPasswordForm.controls['email'].hasError('required') || resetPasswordForm.controls['email'].touched && resetPasswordForm.controls['email'].hasError('email')">
+                               @if(resetPasswordForm.controls['email'].touched && resetPasswordForm.controls['email'].hasError('required')){
+                                <mat-hint>Email Is Required</mat-hint>
+                               }
+                               @if(resetPasswordForm.controls['email'].touched && resetPasswordForm.controls['email'].hasError('email')){
+                                <mat-hint>Invalid Email</mat-hint>
+                               }
+                            </div> -->
+                            <div class="input-div">
+                                <input class="login-input" placeholder="OTP" formControlName="otp" [class.error]="resetPasswordForm.controls['otp'].touched && resetPasswordForm.controls['otp'].hasError('required') || resetPasswordForm.controls['otp'].touched && resetPasswordForm.controls['otp'].hasError('otp')">
+                               @if(resetPasswordForm.controls['otp'].touched && resetPasswordForm.controls['otp'].hasError('required')){
+                                <mat-hint>OTP Required</mat-hint>
+                               }
+                               @if(resetPasswordForm.controls['otp'].touched && resetPasswordForm.controls['otp'].hasError('otp')){
+                                <mat-hint>Invalid OTP</mat-hint>
+                               }
+                            </div>
+                            <div class="input-div">
+                                <input [type]="passwordVisible ? 'text' : 'password'" class="login-input" placeholder="Enter New Passwrod" formControlName="new_password" [class.error]="resetPasswordForm.controls['new_password'].touched && resetPasswordForm.controls['new_password'].hasError('required') || resetPasswordForm.controls['new_password'].touched && resetPasswordForm.controls['new_password'].hasError('email')">
+                                @if(!passwordVisible){
+                                    <img (click)="changePasswordVisibility()" matTooltip="Show Password" class="eye-icon" src="assets/images/icons/visibility-on.svg">
+                                }
+                                @else {
+                                    <img class="eye-icon" (click)="changePasswordVisibility()" matTooltip="Hide Password" src="assets/images/icons/visibility-off.svg">
+                                }
+                                @if(resetPasswordForm.controls['new_password'].touched && resetPasswordForm.controls['new_password'].hasError('required')){
+                                <mat-hint>Password Required</mat-hint>
+                               }
+                               @if(resetPasswordForm.controls['new_password'].touched && resetPasswordForm.controls['new_password'].hasError('new_password')){
+                                <mat-hint>Invalid Password</mat-hint>
+                               }
+                            </div>
+                            <!-- <div class="input-div">
+                                <input class="login-input" placeholder="Password" [type]="passwordVisible ? 'text' : 'password'" formControlName="password" [class.error]="signInForm.controls['email'].touched && signInForm.controls['password'].hasError('required')">
+                                @if(signInForm.controls['password'].touched && signInForm.controls['password'].hasError('required')){
+                                    <mat-hint>Password Is Required</mat-hint>
+                                }
+                            </div> -->
+                        </div>
+                    </form>
+                }
+                <div class="button-div">
+                    <button type="button" [disabled]="btnloader" (click)="showResetForm ? resetPassword(): forgotPassword()" [class.loading]="btnloader" class="signin-btn" >{{showResetForm ? "Reset Password" : "Send OTP"}}</button>
+                    <!-- <a class="forgot-btn" (click)="navigate('/forgot-password')">Forgot Password?</a> -->
+                </div>
+                
+                <!-- <div class="footer">
+                    <p class="footer-text">New to CineFlix? <a (click)="navigate('/signup')">Sign up now.</a></p>
+                </div> -->
+            </div>
+        }
+        
+    </div>
+</div>

@@ -1,0 +1,194 @@
+@mixin progress-loader-bg() {
+    background-image: -webkit-linear-gradient(135deg,
+            rgba(255, 211, 211, 0.5) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 211, 211, 0.5) 50%,
+            rgba(255, 211, 211, 0.5) 75%,
+            transparent 75%,
+            transparent);
+    background-image: -o-linear-gradient(135deg,
+            rgba(255, 211, 211, 0.5) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 211, 211, 0.5) 50%,
+            rgba(255, 211, 211, 0.5) 75%,
+            transparent 75%,
+            transparent);
+    background-image: linear-gradient(-45deg,
+            rgba(255, 211, 211, 0.5) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 211, 211, 0.5) 50%,
+            rgba(255, 211, 211, 0.5) 75%,
+            transparent 75%,
+            transparent);
+    background-size: 50px 50px;
+}
+
+.wrapper {
+    height: 100vh;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.9),
+            rgba(0, 0, 0, 0.4),
+            rgba(0, 0, 0, 0.9)),
+        url('../../../../../public/assets/images/background/landingbg6.jpg');
+    background-size: cover;
+    /* Adjust the background size */
+    background-position: center;
+    /* Center the background image */
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container {
+        z-index: 102;
+        width: 400px;
+        padding: 30px;
+        background-color: black;
+
+        // .signin-wrapper{
+        .header-text {
+            color: white;
+            font-weight: 600;
+            font-size: clamp(1.8rem, 1.7487rem + 0.2051vw, 2rem);
+            margin: 0;
+        }
+
+        .input-div {
+            // width: 100%;
+            // margin-bottom: 15px;
+            height: 65px;
+            .eye-icon{
+                position: relative;
+                top: -30px;
+                left: 90%;
+            
+            }
+
+        }
+
+        .login-input {
+            background-color: #E8F0FE !important;
+            color: black;
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #5E5E5E;
+            outline: none;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+
+            &.error {
+                border-color: red;
+                outline-color: red;
+            }
+        }
+
+        .button-div {
+            text-align: center;
+            cursor: pointer;
+
+            .signin-btn {
+                color: white;
+                background-color: red;
+                text-align: center;
+                width: 100%;
+                box-sizing: border-box;
+                border: none;
+                cursor: pointer;
+                -o-border-radius: 6px;
+                font-size: 18px;
+                font-weight: 600;
+                padding: 10px;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                -ms-border-radius: 6px;
+                border-radius: 6px;
+                margin-bottom: 5px;
+                overflow: hidden;
+
+                &.loading {
+                    background: red;
+                    position: relative;
+                    color: rgba($color: #ffffff, $alpha: 0.5);
+                    overflow: hidden;
+
+                    &::before {
+                        content: none;
+                    }
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                        @include progress-loader-bg();
+                        z-index: 1;
+                        -webkit-animation: move 2s linear infinite;
+                        animation: move 2s linear infinite;
+                        overflow: hidden;
+                    }
+                }
+            }
+
+            .forgot-btn {
+                color: white;
+                font-size: 14px;
+
+                &:hover {
+                    text-decoration: underline;
+                    opacity: .6;
+                }
+            }
+
+        }
+
+        .footer {
+            color: white;
+            font-size: 13px;
+            margin-top: 20px;
+
+            a {
+                font-weight: 500;
+                font-size: 15px;
+                cursor: pointer;
+                color: white;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        mat-hint {
+            color: white;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+    }
+}
+
+@-webkit-keyframes move {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+@keyframes move {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
+}

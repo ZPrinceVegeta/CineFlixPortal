@@ -1,0 +1,24 @@
+.wrapper {
+    display: flex;
+    background-color: transparent;
+    z-index: 101;
+    padding: 10px 8vw;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    width: calc(100% - 16vw);
+    .cineflix-logo {
+        width:clamp(9.375rem, 8.5737rem + 3.2051vw, 12.5rem);;
+    }
+
+    .signin-btn {
+        background-color: red;
+        color: white;
+        padding: 6px 12px;
+        font-size: 15px;
+        font-weight: 400;
+        border-radius: 3px;
+        border: none;
+        cursor: pointer;
+    }
+}

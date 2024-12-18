@@ -1,0 +1,10 @@
+
+<div class="wrapper">
+    <img class="cineflix-logo" src="assets/images/logo/cineflix-logo.png" alt="cinefilx-logo">
+    @if(!currentUrl.includes('signin')){
+        <div >
+            <button class="signin-btn" (click)="navigateSignin()" matTooltip="click here to sign in">Sign In</button>
+        </div>
+    }
+
+</div>

@@ -1,0 +1,30 @@
+<div class="parent">
+    <div #code class="countrycode"  (click)="dropFlag=!dropFlag" (click)="openselect()">
+      {{currentCountry[0]?.dial_code}}
+    </div>
+    <div class="phoneNumber">
+      <!-- <mat-form-field appearance="outline" class="form-field"> -->
+        <input type="number" class="phone-input" [class.error]="phoneControl.dirty && phoneControl.hasError('required')" [formControl]="phoneControl" (input)="passData()" placeholder="Phone Number"> 
+        @if(phoneControl.dirty && phoneControl.hasError('required')){
+            <mat-hint class="hint">phone number is required</mat-hint>
+        }
+        <!-- <mat-error *ngIf="phoneControl.hasError('required')">This field is required</mat-error>
+        <mat-error *ngIf="phoneControl.hasError('pattern')">Invalid Number</mat-error>  -->
+      <!-- </mat-form-field> -->
+    </div>
+  </div>
+  <mat-select #mySelect [disabled]="disable">
+    <!-- <mat-form-field appearance="outline" class="searchBarCountryCode"> -->
+      <input [formControl]="countryCtrl" type="text" placeholder="Search Country ..." class="searchBarCountryCode">
+    <!-- </mat-form-field> -->
+    <mat-option *ngFor="let state of filteredCountries | async" value="option1" (click)="changeCountryCode(state)" class="country-option">
+      <div class="country-code-container">
+        <div class="flag-container">
+          <span class="fi fi-{{state?.code | lowercase}} flag"></span>
+          <!-- <span class="flag">{{ state.flag }} </span> -->
+          <span class="country-name"> {{ state.name }}</span>
+        </div>
+        <span class="country-code">{{state.dial_code}}</span>
+      </div>
+    </mat-option>
+  </mat-select>

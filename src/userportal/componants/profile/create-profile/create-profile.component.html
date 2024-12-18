@@ -1,0 +1,91 @@
+@if(currentPage == 'first'){
+  <div class="wrapper">
+    <div class="centred-div">
+
+      <div class="profile-actions-container">
+        <h1>Add Profile</h1>
+        <h2>Add a profile for another person watching Cineflix.</h2>
+        <div class="profile-entry">
+          <div class="main-profile-avatar" (click)="openAvatarDialog()"><img
+              src="assets/images/avatar/avatar-icon{{profileForm.get('image_index')?.value}}.svg" alt=""
+              class="ltr-1etmbqw"></div>
+              <ng-container [formGroup]="profileForm">
+                <div class="profile-add-parent">
+                  <div class="inputContainer">
+                    <input #nameInput class="name-input" type="text" (blur)="nameBlur()" (keypress)="namePress($event)" formControlName="name" placeholder="Name">
+                  </div>
+                  <div class="add-kids-option">
+                    <div class="child-checkbox" (click)="swapChild()" style="color: white;">
+                      @if(profileForm.get('agegroup')?.value){
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" width="24" height="24" viewBox="0 0 24 24" role="img"
+                        data-icon="CheckmarkStandard" aria-hidden="true" class="svg-icon svg-icon-check-mark">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M21.2928 4.29285L22.7071 5.70706L8.70706 19.7071C8.51952 19.8946 8.26517 20 7.99995 20C7.73474 20 7.48038 19.8946 7.29285 19.7071L0.292847 12.7071L1.70706 11.2928L7.99995 17.5857L21.2928 4.29285Z"
+                          fill="#FFFFFF"></path>
+                      </svg>
+
+                      }
+                    </div>
+                  </div>
+                  <span class="child-label">Child?</span>
+
+                </div>
+              </ng-container>
+
+        </div>
+        <span (click)="continue('second')" class="profile-button continue-button"
+          role="button"><span>Continue</span></span>
+        <span class="profile-button cancel-button"
+          role="button"><span>Cancel</span>
+        </span>
+      </div>
+    </div>
+  </div>
+}
+@if(currentPage == 'second'){
+  <div class="languagr-wrapper">
+   <div class="language-head">
+    <h2>Select preferred language</h2>
+    <div class="languageContainer">
+      @for (languagge of languaggeVm; track languagge) {
+        <div class="languageCard">
+          <div class="cardBox" [style.background-color]="languagge.color" [class.cardbox-selected]="isSelected(languagge.id)" (click)="selectLanguage(languagge.id)">
+
+            {{languagge.native_name}}
+          </div>
+          {{languagge.name}}
+        </div>
+      }
+    </div>
+    <div class="button-container">
+      <span (click)="back('first')" class="profile-button continue-button"
+      role="button"><span>Back</span></span>
+    <span (click)="continue('third')" class="profile-button cancel-button"
+      role="button"><span>Continue</span>
+    </span>
+    </div>
+   </div>
+  </div>
+
+}
+@if(currentPage == 'third'){
+  <div class="languagr-wrapper">
+    <div class="language-head">
+     <h2>Select preferred genre</h2>
+     <div class="genreContainer">
+       @for (genre of genresList; track genre) {
+        <div class="genreCard" [style.background-color]="genre.color" [class.genre-selected]="isGenreSelected(genre.id)" (click)="selectGenre(genre.id)">
+          {{genre.name}}
+        </div>
+       }
+     </div>
+     <div class="button-container">
+       <span (click)="back('second')" class="profile-button continue-button"
+       role="button"><span>Back</span></span>
+     <span (click)="submit()" class="profile-button cancel-button"
+       role="button"><span>Continue</span>
+     </span>
+     </div>
+    </div>
+   </div>
+}
