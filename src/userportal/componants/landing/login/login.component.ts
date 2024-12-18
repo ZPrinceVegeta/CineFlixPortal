@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,6 +11,7 @@ import { CountryCodeComponent } from '../../country-code/country-code.component'
 import { ResetPassword } from '../../../models/models';
 import {MatDialog, MatDialogModule} from'@angular/material/dialog'
 import { ErrorDialogComponent } from '../../error-dialog/error-dialog.component';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -44,16 +45,19 @@ export class LoginComponent implements OnDestroy, OnInit {
   private generalHelper: GeneralHelper = new GeneralHelper()
   showResetForm: boolean = false;
   passwordVisible : boolean = false
-  constructor(private router: Router, private generalService: GeneralService , private matDialog : MatDialog) {
+  constructor(private router: Router, private generalService: GeneralService , private matDialog : MatDialog , @Inject(PLATFORM_ID) private platformId: Object) {
 
   }
   ngOnInit(): void {
-    const currenturl = sessionStorage.getItem('landingUrl')
+    if (isPlatformBrowser(this.platformId)) {
+      const currenturl = sessionStorage.getItem('landingUrl')
     this.currentUrl = currenturl ? currenturl : ''
+    }
+    
   }
 
-  login(){
-    this.router.navigate(['/profile/create-profile'])
+  login() {
+    this.router.navigate(['/profile'])
   }
 
   signIn() {
@@ -151,7 +155,7 @@ export class LoginComponent implements OnDestroy, OnInit {
       this.resetPasswordForm.markAllAsTouched()
     }
   };
-
+  
   navigate(url: string) {
     this.router.navigate([`${url}`])
     this.currentUrl = url

@@ -1,4 +1,5 @@
-import { Component, ElementRef, HostListener, QueryList, ViewChildren } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, ElementRef, HostListener, Inject, PLATFORM_ID, QueryList, ViewChildren } from '@angular/core';
 import { fromEvent } from 'rxjs';
 
 @Component({
@@ -22,11 +23,14 @@ export class FrequentQuestionsComponent {
     {headMargin : 80 ,factor : 25} , 
   ]
   @ViewChildren('list') list!: QueryList<ElementRef>
-  constructor(){
-    this.viewportWidth = window.innerWidth
-    fromEvent(window, 'resize').subscribe(()=>{
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if(isPlatformBrowser(this.platformId)){
+      this.viewportWidth = window.innerWidth
+      fromEvent(window, 'resize').subscribe(()=>{
       this.viewportWidth = window.innerWidth
     })
+    }
+    
   }
 
   openList(index : number){

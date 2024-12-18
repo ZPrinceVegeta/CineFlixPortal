@@ -23,15 +23,3 @@ export interface SignUpReq {
     otp:string
     new_password:string
   }
-
-export interface Language {
-  id: string;
-  name: string;
-  native_name?: string;
-  color ? : string
-}
-export interface Genres {
-  id : string ,
-  name : string,
-  color : string
-}

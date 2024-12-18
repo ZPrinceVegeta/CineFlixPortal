@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AvatarDidialogComponent } from './avatar-didialog.component';
+import { NotificationComponent } from './notification.component';
 
-describe('AvatarDidialogComponent', () => {
-  let component: AvatarDidialogComponent;
-  let fixture: ComponentFixture<AvatarDidialogComponent>;
+describe('NotificationComponent', () => {
+  let component: NotificationComponent;
+  let fixture: ComponentFixture<NotificationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AvatarDidialogComponent]
+      imports: [NotificationComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AvatarDidialogComponent);
+    fixture = TestBed.createComponent(NotificationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

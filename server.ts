@@ -40,6 +40,25 @@ export function app(): express.Express {
       .then((html) => res.send(html))
       .catch((err) => next(err));
   });
+  server.post('/client', (req, res, next) => {
+    const { protocol, originalUrl, baseUrl, headers, body } = req;
+    console.log("body.ClientID", req)
+    commonEngine
+      .render({
+        bootstrap,
+        documentFilePath: indexHtml,
+        url: `${protocol}://${headers.host}${originalUrl}`,
+        publicPath: browserDistFolder,
+        providers: [
+          { provide: 'APP_BASE_HREF', useValue: baseUrl },
+          { provide: 'MY_TOKEN', useValue: body.clientId || '' },
+          // { provide: 'agent', useValue: headers['user-agent'] },
+        ],
+      })
+      .then((html) => res.send(html))
+      .catch((err) => next(err));
+
+  });
 
   return server;
 }

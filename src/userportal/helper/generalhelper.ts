@@ -2,6 +2,7 @@ import { SignInRes } from "../models/models";
 import { AES } from "crypto-js"
 import { environment } from "../../environments/environment";
 import * as CryptoJS from 'crypto-js';
+import { FormGroup } from "@angular/forms";
 export class GeneralHelper {
     private encryptkey = environment.tokenEncoderKey;
 

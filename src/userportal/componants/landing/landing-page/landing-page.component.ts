@@ -1,9 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Router } from '@angular/router';
 import{ MatTooltipModule} from '@angular/material/tooltip'
 import { FrequentQuestionsComponent } from '../frequent-questions/frequent-questions.component';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Subject } from 'rxjs';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 @Component({
   selector: 'app-landing-page',
@@ -17,14 +19,20 @@ export class LandingPageComponent  implements OnInit , OnDestroy{
   urlArray = ['landingbg3' , 'landingbg5' , 'landingbg6' , 'landingbg7']
   backgroundUrl : string = ''
   interval: any;
-  constructor(private router : Router){}
+  constructor(private router : Router , @Inject(PLATFORM_ID) private platformId: any){}
   ngOnDestroy(): void {
-   clearInterval(this.interval)
-   console.log('interval cleared');
+    if(isPlatformBrowser(this.platformId) ){
+      clearInterval(this.interval)
+    }
+   
    
   }
   ngOnInit(): void {
-     
+
+    if(isPlatformBrowser(this.platformId)){
+    AOS.init();
+
+    }
   }
 
   navigateSignUp(){

@@ -32,13 +32,4 @@ return this.http.post(`${this.baseURl}auth/reset-password/`,data)
   getProfiles(){
     return this.http.get(`${this.baseURl}profile/profiles`)
   }
-  getLanguages(){
-    return this.http.get(`${this.baseURl}crud/languages`)
-  }
-  getGenres(){
-    return this.http.get(`${this.baseURl}crud/genres`)
-  }
-  createProfile(payload : any){
-    return this.http.post(`${this.baseURl}profile/create-profile` , payload)
-  }
 }

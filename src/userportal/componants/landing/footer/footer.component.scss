@@ -29,11 +29,43 @@
 
     }
     .footer-bottom{
-        .bottom-text{
-            font-size: clamp(0.8125rem, 0.7644rem + 0.1923vw, 1rem);;
-            font-weight: 400;
-            color: #A7B3AD;
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        .footer-logo{
+            height: 55px;
+            width: 244px;
+            // background: red;
+            background:  url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3SzCa9K_h1PWwN41TwJMsFJhXkM2z-1lRrA&usqp=CAU');
+            background-position:center ;
+            background-size: cover;
+            background-clip: text;
+            h1{
+                margin: 0;
+                color: transparent;
+                animation: changeColor 20s infinite;
+                
+            }
+            
         }
+    }
+    
+}
+@keyframes changeColor {
+    0%{
+        color: transparent;
+    }
+    40%{
+        color: transparent;
+    }
+    50%{
+        color: red;
+    }
+    90%{
+        color: red;
+    }
+    100%{
+        color: transparent;
     }
 }
 @media(max-width :992px){
